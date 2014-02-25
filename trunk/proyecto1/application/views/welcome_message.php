@@ -12,6 +12,8 @@
 
 	<div id="body">
             <p>Aqui desarrollaremos la aplicacion de gestion.</p>
+            <p>Se acaba de realizar un cambio en Netbeans y se subió al repositorio de codigo.</p>
+            
 	</div>
 </div>
 
