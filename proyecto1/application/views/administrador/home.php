@@ -1,7 +1,9 @@
 <?php
 
-echo form_open('administrador/validar_formulario_crear_usuario')
- . form_submit('nuevo_docente', 'Nuevo Docente')
+echo "MENU ADMINISTRADO:".br();
+
+echo form_open('administrador/docentes')
+ . form_submit('crud_docentes', 'CRUD DOCENTES')
  . form_close();
 
 
