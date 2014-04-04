@@ -3,6 +3,15 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
+/**
+ * Aqui se debe implementar todo lo relacionado a verificacion de datos, 
+ * formularios, todo lo relacionado con la seguridad
+ * descrito en:
+ * http://escodeigniter.com/guia_usuario/general/security.html
+ * http://uno-de-piera.com/buenas-practicas-y-consejos-en-codeigniter/
+ * http://www.websec.mx/blog/ver/inseguridad-datos-sesion-codeigniter
+ * 
+ */
 class Seguridad_model extends CI_Model {
 
     function __construct() {

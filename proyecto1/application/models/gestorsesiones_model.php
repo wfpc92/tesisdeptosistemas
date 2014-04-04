@@ -14,10 +14,14 @@ class Gestorsesiones_model extends CI_Model {
         $this->load->library('session');
         $newdata = array(
             'email' => $email,
-            'kind' => $kind,
-            'logged_in' => TRUE
+            'kind' => $kind
         );
         $this->session->set_userdata($newdata);
+    }
+    
+    public function logout() {
+        $this->load->library('session');
+        $this->session->sess_destroy();
     }
 
 }

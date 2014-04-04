@@ -6,6 +6,6 @@ echo form_open('administrador/docentes')
  . form_submit('crud_docentes', 'CRUD DOCENTES')
  . form_close();
 
-
+echo anchor('/administrador/logout', 'Cerrar Sesion');
 ?>
 
