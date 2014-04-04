@@ -97,5 +97,12 @@ class Administrador extends CI_Controller {
         //$post_array['password'] = $this->encrypt->encode($post_array['password']);
         return $post_array;
     }
+    
+    function logout()
+    {
+        $this->load->model('gestorsesiones_model','sesion');
+        $this->sesion->logout();
+        $this->load->view('home');
+    }
 
 }
