@@ -13,7 +13,7 @@ class Administrador extends CI_Controller {
         /* ------------------ */ 
  
         $this->load->library('grocery_CRUD');
-        $this->load->model('docente');
+        $this->load->model('docente_model');
     }
 
     public function index() {
@@ -39,7 +39,7 @@ class Administrador extends CI_Controller {
     }
 
     public function docentes() {
-        $docente = new Docente();
+        $docente = new Docente_model();
 
         $output = $docente->gestion_docente();
 
