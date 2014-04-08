@@ -1,6 +1,6 @@
 <?php
 
-echo "Docente Hola Mundo";
+echo "index el docente";
 
 ?>
 
