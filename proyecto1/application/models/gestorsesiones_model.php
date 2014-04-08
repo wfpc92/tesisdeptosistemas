@@ -10,10 +10,10 @@ class Gestorsesiones_model extends CI_Model {
         //$this->load->model('administrator_model', 'administrator');
     }
 
-    public function crear_session($email, $kind) {
+    public function crear_session($kind) {
         $this->load->library('session');
         $newdata = array(
-            'email' => $email,
+            'email' => $this->usuario->email,
             'kind' => $kind
         );
         $this->session->set_userdata($newdata);
@@ -23,7 +23,4 @@ class Gestorsesiones_model extends CI_Model {
         $this->load->library('session');
         $this->session->sess_destroy();
     }
-
 }
-?>
-

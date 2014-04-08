@@ -19,16 +19,15 @@ class Seguridad_model extends CI_Model {
         //$this->load->model('administrator_model', 'administrator');
     }
 
-    public function datosValidos($email, $password) {
+    public function datosValidos() {
         $result = false;
-        if ($email != '' and $password != '') {
+        if ($this->usuario->email != '' && $this->usuario->password != '') {
             $result = true;
         }
         return $result;
     }
 
-    public function validar_usuario($email, $password) {
-        $this->load->model('dao_model', 'dao');
+    public function validar_usuario() {
         $contra = $this->dao->get_contrasena_usuario($email);
         if ($contra == $password) {
             return 'administrador';

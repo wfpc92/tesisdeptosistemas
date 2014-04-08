@@ -1,16 +1,18 @@
 <?php
-
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 include 'administrador.php';
+include 'docente.php';
+include 'jefe_departamento.php';
 
 class Usuario extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
-        //$this->load->model('cookiemanager_model', 'cookiemanager');
-        //$this->load->model('dataaccess_model', 'dataaccess');
-        //$this->load->model('emailservice_model', 'emailservice');
+        $this->load->model('usuario_model', 'usuario');
+        $this->load->model('seguridad_model', 'seguridad');
+        $this->load->model('gestorsesiones_model', 'sesiones');
+        $this->load->model('dao_model', 'dao');
         $this->data['title'] = 'homepage';
         $this->data['header'] = 'user/header';
         $this->data['content'] = 'content';
@@ -27,29 +29,37 @@ class Usuario extends CI_Controller {
      */
 
     public function login() {
-        if (!isset($_POST))
-            return;
-        $this->load->model('seguridad_model', 'seguridad');
-        $this->load->model('gestorsesiones_model', 'sesiones');
-        $email = isset($_POST['email']) ? $_POST['email'] : '';
-        $password = isset($_POST['password']) ? $_POST['password'] : '';
-        $datosValidos = $this->seguridad->datosValidos($email, $password);
-        $controller = FALSE;
+        $datosValidos = $this->seguridad->datosValidos();
+        $controller = NULL;
         if ($datosValidos) {
-            $tipo_usuario = $this->seguridad->validar_usuario($email, $password);
-            $controller = ($tipo_usuario == "administrador") ?
-                    new Administrador() :
-                    FALSE;
-            if ($controller != FALSE) {
-                $this->sesiones->crear_session($email, $tipo_usuario);
-                $controller->tmp('redirect');
-                return;
+            $tipo_usuario = $this->dao->get_tipo_usuario();
+            $controller = array();
+            foreach ($tipo_usuario as $key => $value) {
+                switch ($value) {
+                    case "administrador":
+                        $controller[$key] = new Administrador();
+                        break;
+                    case "docente":
+                        $controller[$key] = new Docente();
+                        break;
+                    case "jefe_departamento":
+                        $controller[$key] = new Jefe_departamento();
+                        break;
+                }
             }
         }
-        if (!$datosValidos || !$controller) {
-            $this->data['summary'] = "email or password incorrect.";
+        if ($controller != NULL) {
+            //$this->sesiones->crear_session($tipo_usuario);
+            foreach ($controller as $key => $value) {
+                $controller[$key]->tmp('index');
+            }
+            return;
         }
-        $this->load->view("home",$this->data);
+
+        if (!$datosValidos || !$controller) {
+            $this->data['summary'] = "Email o Contraseña incorrectos.";
+        }
+        $this->load->view("home", $this->data);
     }
 
     public function vista_restablecer_contrasena() {
@@ -58,16 +68,16 @@ class Usuario extends CI_Controller {
 
     public function restablecer_contrasena() {
         $this->load->model('dao_model', 'dao');
-        $email = isset($_POST['email']) ? $_POST['email'] : '';
-        $password = $this->dao->get_contrasena_usuario($email);
+        $email = $this->usuario->email;
+        $password = $this->dao->get_contrasena_usuario();
         if ($password) {
             $this->load->model('clienteemail_model', 'email');
             $this->email->enviar_contrasena($email, $password);
             $this->data['email'] = $email;
             echo 'contrasena enviada';
-        }
-        else
+        } else {
             echo 'email no valido, contrasena no enviada';
+        }
     }
 
 }

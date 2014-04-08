@@ -7,13 +7,6 @@ class Administrador extends CI_Controller {
 
     function __construct() {
         parent::__construct();
-        /* Standard Libraries of codeigniter are required */
-		$this->load->database();
-        $this->load->helper('url');
-        /* ------------------ */ 
- 
-        $this->load->library('grocery_CRUD');
-        $this->load->model('docente_model');
     }
 
     public function index() {
@@ -39,10 +32,9 @@ class Administrador extends CI_Controller {
     }
 
     public function docentes() {
+        $this->load->library('grocery_CRUD');
         $docente = new Docente_model();
-
         $output = $docente->gestion_docente();
-
         $this->_docentes_output($output);
     }
 
