@@ -32,9 +32,10 @@ class Administrador extends CI_Controller {
     }
 
     public function docentes() {
-        $this->load->library('grocery_CRUD');
-        $docente = new Docente_model();
-        $output = $docente->gestion_docente();
+        //$this->load->library('grocery_CRUD');
+        //$docente = new Docente_model();
+        $this->load->model('docente_model','docente');
+        $output = $this->docente->gestion_docente();
         $this->_docentes_output($output);
     }
 
