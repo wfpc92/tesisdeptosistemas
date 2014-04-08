@@ -11,6 +11,7 @@ class Docente_model extends CI_Model {
 
     public function gestion_docente() {
         $this->load->library('grocery_CRUD');
+        $this->load->database();
         $crud = new grocery_CRUD();
         $crud->set_table('usuario')->set_subject('Docente');
         $crud->set_relation_n_n('Roles', 'usuario_rol', 'rol', 'USU_CODIGO', 'ROL_CODIGO', 'ROL_NOMBRE');
