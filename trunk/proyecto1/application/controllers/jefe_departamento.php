@@ -6,9 +6,11 @@ if (!defined('BASEPATH'))
 class Jefe_Departamento extends CI_Controller {
 
     
-    public function index() {
+     public function tmp($pag) {
+        $this->$pag();
+    }
+
+    private function index() {
         $this->load->view('jefe_departamento/home');
     }
-    
-
 }

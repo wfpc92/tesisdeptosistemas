@@ -21,7 +21,8 @@ class DAO_model extends CI_Model {
         $this->db->query($sql, array(3, 'live', 'Rick'));
     }
 
-    function get_contrasena_usuario($email) {
+    function get_contrasena_usuario() {
+        $email = $this->usuario->email;
         if ($this->conectar()) {
             $query = $this->db->query('
                     SELECT USU_CONTRASENA AS password 
@@ -34,6 +35,26 @@ class DAO_model extends CI_Model {
             }
         }
         return FALSE;
+    }
+
+    function get_tipo_usuario() {
+        $result = array();
+        $email = $this->usuario->email;
+        if ($this->conectar()) {
+            $sql = "SELECT rol.ROL_NOMBRE
+                    FROM usuario
+                    INNER JOIN usuario_rol ON usuario.USU_CODIGO = usuario_rol.USU_CODIGO
+                    INNER JOIN rol ON usuario_rol.ROL_CODIGO = rol.ROL_CODIGO
+                    WHERE usuario.USU_EMAIL = ?
+                    LIMIT 0 , 30";
+            $query = $this->db->query($sql, array($email));
+            if ($query->num_rows() > 0) {
+                foreach ($query->result_array() as $row) {
+                    array_push($result, $row['ROL_NOMBRE']);
+                }
+            }
+        }
+        return $result;
     }
 
 }
