@@ -14,17 +14,17 @@ class Docente_model extends CI_Model {
         $this->load->database();
         $crud = new grocery_CRUD();
         $crud->set_table('usuario')->set_subject('Docente');
-        $crud->set_relation_n_n('Roles', 'usuario_rol', 'rol', 'USU_CODIGO', 'ROL_CODIGO', 'ROL_NOMBRE');
+        //$crud->set_relation_n_n('Roles', 'usuario_rol', 'rol', 'USU_CODIGO', 'ROL_CODIGO', 'ROL_NOMBRE');
 
         /* columnas a mostrar */
-        $crud->columns('USU_NOMBRE', 'USU_APELLIDO', 'USU_EMAIL', 'USU_LOGIN', 'USU_ESTADO');
+        $crud->columns('USU_NOMBRE', 'USU_APELLIDO', 'USU_EMAIL', 'USU_LOGIN', 'USU_ESTADO','USU_ROL');
         $crud->fields('USU_NOMBRE', 'USU_APELLIDO', 'USU_EMAIL', 'USU_LOGIN', 'USU_CONTRASENA', 'USU_ESTADO');
 
         /* campos en add */
         $crud->add_fields('USU_NOMBRE', 'USU_APELLIDO', 'USU_EMAIL', 'USU_LOGIN', 'USU_CONTRASENA', 'USU_ESTADO');
 
         /* campos en edit */
-        $crud->edit_fields('USU_NOMBRE', 'USU_APELLIDO', 'USU_EMAIL', 'USU_LOGIN', 'USU_ESTADO', 'Roles');
+        $crud->edit_fields('USU_NOMBRE', 'USU_APELLIDO', 'USU_EMAIL', 'USU_LOGIN', 'USU_ESTADO', 'USU_ROL');
 
         /* Los nombres de los campos */
         $crud->display_as('USU_NOMBRE', 'Nombre');
@@ -33,6 +33,7 @@ class Docente_model extends CI_Model {
         $crud->display_as('USU_LOGIN', 'Login');
         $crud->display_as('USU_CONTRASENA', 'Contraseña');
         $crud->display_as('USU_ESTADO', 'Estado');
+        $crud->display_as('USU_ROL', 'Rol');
 
         /* Campos requeridos */
         $crud->required_fields('USU_NOMBRE', 'USU_APELLIDO', 'USU_EMAIL', 'USU_LOGIN', 'USU_CONTRASENA');
@@ -40,6 +41,7 @@ class Docente_model extends CI_Model {
         /* Tipo de campo */
         $crud->field_type('USU_CONTRASENA', 'password');
         $crud->field_type('USU_ESTADO', 'enum', array('activo', 'inactivo'));
+        $crud->field_type('USU_ROL', 'enum', array('jefe de departamento', 'docente', 'administrador'));
 
         /* Edit vs Add */
         $state = $crud->getState();
