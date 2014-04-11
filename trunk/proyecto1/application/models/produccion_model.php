@@ -50,6 +50,18 @@ class Produccion_model extends CI_Model {
         
         /*Tipo de campo*/
         $crud->field_type('PROD_PERMISO','dropdown',array('1'=>'Privada','2'=>'Publico'));
+        $crud->set_field_upload('MONOGRAFIA_ARCHIVO_ADJUNTO','assets/uploads/monografias');
+        
+        /* Edit vs Add */
+        $state = $crud->getState();
+        $state_info = $crud->getStateInfo();
+
+        if ($state == 'add') {
+            $crud->field_type('PROD_ESTADO', 'hidden', 'Sin Aprobar');
+        } elseif ($state == 'edit') {
+            $primary_key = $state_info->primary_key;
+            $crud->field_type('PROD_ESTADO', 'invisible');
+        }
         
         $output = $crud->render();
         return $output;
