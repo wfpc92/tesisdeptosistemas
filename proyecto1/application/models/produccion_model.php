@@ -19,6 +19,7 @@ class Produccion_model extends CI_Model {
     
     public function gestion_monografia(){
         $crud = new grocery_CRUD();
+        //$crud->set_theme('datatables');
         $crud->set_table('monografia')->set_subject('Monografia');
         //$crud->set_relation_n_n('Roles', 'usuario_rol', 'rol','USU_CODIGO','ROL_CODIGO','ROL_NOMBRE');      
         
