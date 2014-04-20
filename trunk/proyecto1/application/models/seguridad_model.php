@@ -40,15 +40,16 @@ class Seguridad_model extends CI_Model {
      * Verifica que el administrador que existe en la base de datos concuerda 
      * validar acceso seguro.
      * con el acceso
-     * @param type $email
-     * @param type $password
      */
-    public function is_administrator($email, $password) {
-        if ($this->administrator->email == $email and
-                $this->administrator->password == $password) {
+    public function es_administrador() {
+        if ($this->sesion->esta_conectado($this->administrador->email)) {
             return TRUE;
         }
         return FALSE;
+    }
+
+    public function logout() {
+        $this->sesion->logout();
     }
 
 }
