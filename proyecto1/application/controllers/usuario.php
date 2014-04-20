@@ -30,12 +30,11 @@ class Usuario extends CI_Controller {
      */
 
     public function login() {
-        echo $this->usuario->email;
-        echo $this->usuario->password;
-        $datos_validos = $this->seguridad->datosValidos();
-        print_r($datos_validos);
+        $this->usuario->email = isset($_POST['email']) ? $_POST['email'] : '';
+        $this->usuario->password = isset($_POST['password']) ? $_POST['password'] : '';
+        $datos_validos = $this->seguridad->datos_validos();
         $controller = NULL;
-        if ($datosValidos) {
+        if ($datos_validos) {
             $this->usuario->tipo_usuario = $this->dao->get_tipo_usuario();
             $controller = array();
             foreach ($this->usuario->tipo_usuario as $key => $value) {
@@ -53,15 +52,15 @@ class Usuario extends CI_Controller {
             }
         }
         if ($controller != NULL) {
-            $this->load->model('gestorsesiones_model', 'sesion');
-            $this->sesion->crear_session();
+            $this->seguridad->nueva_session($this->usuario);
+            $controller[0]->tmp('redirect');
             foreach ($controller as $key => $value) {
                 $controller[$key]->tmp('index');
             }
             return;
         }
 
-        if (!$datosValidos || !$controller) {
+        if (!$datos_validos || !$controller) {
             $this->data['summary'] = "Email o Contraseña incorrectos.";
         }
         $this->load->view("home", $this->data);
@@ -85,7 +84,7 @@ class Usuario extends CI_Controller {
         }
     }
 
-    private function logout() {
+    public function logout() {
         $this->seguridad->logout();
         $this->load->view('home');
     }

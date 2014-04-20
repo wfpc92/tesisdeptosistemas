@@ -10,24 +10,32 @@ class Gestorsesiones_model extends CI_Model {
         $this->load->library('session');
     }
 
-    public function crear_session() {
+    public function crear_session($usuario) {
         $newdata = array(
-            'email' => $this->usuario->email,
-            'kind' => $this->usuario->tipo_usuario
+            'email' => $usuario->email,
+            'tipo' => $usuario->tipo_usuario
         );
         $this->session->set_userdata($newdata);
-        echo 'informacion de session nueva: ';
-        print_r($this->session->all_userdata());
     }
 
     public function logout() {
         $this->session->sess_destroy();
     }
 
+    public function es_tipo_usuario($usuario) {
+        $tipo = $this->session->userdata('tipo');
+        if ($tipo) {
+            foreach ($tipo as $t) {
+                if ($t === $usuario) {
+                    return TRUE;
+                }
+            }
+        }
+        return FALSE;
+    }
+
     public function esta_conectado($email) {
-        print_r($this->session->all_userdata());
         $email_cookie = $this->session->userdata('email');
-        echo 'email entrante: ' . $email . ' email saliente: ' . $email_cookie;
         return $email == $email_cookie ? TRUE : FALSE;
     }
 

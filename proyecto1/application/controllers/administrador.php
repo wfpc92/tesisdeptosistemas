@@ -7,19 +7,15 @@ class Administrador extends CI_Controller {
 
     function __construct() {
         parent::__construct();
-        $this->load->model('seguridad_model', 'seguridad');
         $this->load->model('administrador_model', 'administrador');
+        $this->load->model('seguridad_model', 'seguridad');
     }
 
-    public function tmp($func = 'error') {
+    public function tmp($func = 'index') {
         if ($this->seguridad->es_administrador()) {
-            if ($func != 'error') {
-                $this->$func();
-            }
-            // else
-            //   $this->load->view('error_404');
+            $this->$func();
         } else {
-            //$this->load->view('error_404');
+            show_404();
         }
     }
 
@@ -28,7 +24,7 @@ class Administrador extends CI_Controller {
     }
 
     private function redirect() {
-        redirect(site_url('/administrador'));
+        redirect('/administrador/tmp/index');
     }
 
     private function crear_usuario() {
@@ -50,4 +46,5 @@ class Administrador extends CI_Controller {
     private function _docentes_output($output = null) {
         $this->load->view('administrador/docentes.php', $output);
     }
+
 }

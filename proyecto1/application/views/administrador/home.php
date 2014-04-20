@@ -2,10 +2,10 @@
 
 echo "MENU ADMINISTRADO:".br();
 
-echo form_open('administrador/docentes')
+echo form_open('administrador/tmp/docentes')
  . form_submit('crud_docentes', 'CRUD DOCENTES')
  . form_close();
 
-echo anchor('/administrador/logout', 'Cerrar Sesion');
+echo anchor('/usuario/logout', 'Cerrar Sesion');
 ?>
 
