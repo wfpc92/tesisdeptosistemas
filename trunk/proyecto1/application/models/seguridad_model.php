@@ -16,10 +16,14 @@ class Seguridad_model extends CI_Model {
 
     function __construct() {
         parent::__construct();
-        //$this->load->model('administrator_model', 'administrator');
+        $this->load->model('gestorsesiones_model', 'sesion');
     }
 
-    public function datosValidos() {
+    public function nueva_session($usuario) {
+        $this->sesion->crear_session($usuario);
+    }
+
+    public function datos_validos() {
         $result = false;
         if ($this->usuario->email != '' && $this->usuario->password != '') {
             $result = true;
@@ -42,10 +46,15 @@ class Seguridad_model extends CI_Model {
      * con el acceso
      */
     public function es_administrador() {
-        if ($this->sesion->esta_conectado($this->administrador->email)) {
-            return TRUE;
-        }
-        return FALSE;
+        return $this->sesion->es_tipo_usuario('administrador') ? TRUE : FALSE;
+    }
+
+    public function es_docente() {
+        return $this->sesion->es_tipo_usuario('docente') ? TRUE : FALSE;
+    }
+
+    public function es_jefe() {
+        return $this->sesion->es_tipo_usuario('jefe_departamento') && $this->sesion->es_tipo_usuario('docente') ? TRUE : FALSE;
     }
 
     public function logout() {

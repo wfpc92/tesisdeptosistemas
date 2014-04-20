@@ -14,21 +14,33 @@ class Docente extends CI_Controller {
 
         $this->load->library('grocery_CRUD');
         $this->load->model('produccion_model');
+
+
+        $this->load->model('docente_model', 'docente');
+        $this->load->model('seguridad_model', 'seguridad');
     }
 
-    public function tmp($pag) {
-        $this->$pag();
+    public function tmp($func = 'index') {
+        if ($this->seguridad->es_docente()) {
+            $this->$func();
+        } else {
+            show_404();
+        }
     }
 
     private function index() {
         $this->load->view('docente/home');
     }
 
-    public function producciones() {
+    private function redirect() {
+        redirect('/docente/tmp/index');
+    }
+
+    private function producciones() {
         $this->_producciones_output();
     }
 
-    public function monografia() {
+    private function monografia() {
         $produccion = new Produccion_model();
 
         $output = $produccion->gestion_monografia();
@@ -36,11 +48,11 @@ class Docente extends CI_Controller {
         $this->_monografia_output($output);
     }
 
-    public function _producciones_output() {
+    private function _producciones_output() {
         $this->load->view('docente/producciones.php');
     }
 
-    public function _monografia_output($output = null) {
+    private function _monografia_output($output = null) {
         $this->load->view('docente/monografia.php', $output);
     }
 
