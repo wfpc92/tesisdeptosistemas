@@ -7,47 +7,47 @@ class Administrador extends CI_Controller {
 
     function __construct() {
         parent::__construct();
+        $this->load->model('seguridad_model', 'seguridad');
+        $this->load->model('administrador_model', 'administrador');
     }
 
-    public function index() {
+    public function tmp($func = 'error') {
+        if ($this->seguridad->es_administrador()) {
+            if ($func != 'error') {
+                $this->$func();
+            }
+            // else
+            //   $this->load->view('error_404');
+        } else {
+            //$this->load->view('error_404');
+        }
+    }
+
+    private function index() {
         $this->load->view('administrador/home');
     }
-    
-    public function tmp($func){
-        $this->$func();
-    }
-    
-    private function redirect(){
+
+    private function redirect() {
         redirect(site_url('/administrador'));
     }
 
-    public function crear_usuario() {
+    private function crear_usuario() {
         $this->load->database();
         $this->load->model('administrador_model', 'administrador');
         $this->load->view('administrador/');
     }
 
-    public function validar_formulario_crear_usuario() {
+    private function validar_formulario_crear_usuario() {
         $this->load->view('administrador/crear_usuario');
     }
 
-    public function docentes() {
-        //$this->load->library('grocery_CRUD');
-        //$docente = new Docente_model();
-        $this->load->model('docente_model','docente');
+    private function docentes() {
+        $this->load->model('docente_model', 'docente');
         $output = $this->docente->gestion_docente();
         $this->_docentes_output($output);
     }
 
-    public function _docentes_output($output = null) {
+    private function _docentes_output($output = null) {
         $this->load->view('administrador/docentes.php', $output);
     }
-    
-    function logout()
-    {
-        $this->load->model('gestorsesiones_model','sesion');
-        $this->sesion->logout();
-        $this->load->view('home');
-    }
-
 }

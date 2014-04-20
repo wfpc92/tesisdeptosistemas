@@ -1,6 +1,8 @@
 <?php
+
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
+
 include 'administrador.php';
 include 'docente.php';
 include 'jefe_departamento.php';
@@ -11,7 +13,6 @@ class Usuario extends CI_Controller {
         parent::__construct();
         $this->load->model('usuario_model', 'usuario');
         $this->load->model('seguridad_model', 'seguridad');
-        $this->load->model('gestorsesiones_model', 'sesiones');
         $this->load->model('dao_model', 'dao');
         $this->data['title'] = 'homepage';
         $this->data['header'] = 'user/header';
@@ -29,12 +30,15 @@ class Usuario extends CI_Controller {
      */
 
     public function login() {
-        $datosValidos = $this->seguridad->datosValidos();
+        echo $this->usuario->email;
+        echo $this->usuario->password;
+        $datos_validos = $this->seguridad->datosValidos();
+        print_r($datos_validos);
         $controller = NULL;
         if ($datosValidos) {
-            $tipo_usuario = $this->dao->get_tipo_usuario();
+            $this->usuario->tipo_usuario = $this->dao->get_tipo_usuario();
             $controller = array();
-            foreach ($tipo_usuario as $key => $value) {
+            foreach ($this->usuario->tipo_usuario as $key => $value) {
                 switch ($value) {
                     case "administrador":
                         $controller[$key] = new Administrador();
@@ -49,7 +53,8 @@ class Usuario extends CI_Controller {
             }
         }
         if ($controller != NULL) {
-            //$this->sesiones->crear_session($tipo_usuario);
+            $this->load->model('gestorsesiones_model', 'sesion');
+            $this->sesion->crear_session();
             foreach ($controller as $key => $value) {
                 $controller[$key]->tmp('index');
             }
@@ -78,6 +83,11 @@ class Usuario extends CI_Controller {
         } else {
             echo 'email no valido, contrasena no enviada';
         }
+    }
+
+    private function logout() {
+        $this->seguridad->logout();
+        $this->load->view('home');
     }
 
 }
