@@ -1,0 +1,134 @@
+body {
+	background: url("../img/body-fon.png") no-repeat;
+	background-color: #0B2972;
+	font-family: Arial;
+}
+
+#pagina {
+	margin: 0 auto;
+	width: 1090px;
+}
+
+#inicioSesion {
+		height: 25px;        
+}
+	#inicioSesion a:link, #inicioSesion a:visited {
+		color: #FFFFFF;
+		float: right;
+		margin-right: 30px;
+		margin-top: 4px;
+		font-size: 15px;
+
+	}
+	#inicioSesion a:hover {
+		
+	}            
+#header {
+	position: relative;
+	float: right;
+	height: 100px;
+	width: 907px;
+	background-color: #C20602;
+	border-radius: 10px; 
+}
+	#header h1 {
+		color: #FFFFFF;
+		font-size: 36px;
+		text-align: center;
+		line-height: 90px;
+	}
+
+#pagina div.clearFix {
+	clear: both;
+}
+#logo{
+		float: left;
+		height: 243px;
+		width: 183px;
+		background: url("../img/menu-pri-fon.png") no-repeat 0 217px;
+	}
+		#logo div.logo {
+			height: 226px;
+			margin: 0 auto 0 auto;
+			width: 119px;
+		}
+			#logo div.logo img {
+				
+			}
+
+#conSuperior {
+	background: url("../img/con-superior-borde-sup.png") no-repeat scroll 0 0 #DFE8F4;
+	float: right;
+	margin-top: 10px;
+	padding: 17px 26px 9px 33px;
+	width: 848px;
+	height: 107px;
+	background-color: #DFE8F4;
+}
+	#menuPrincipal {
+		position: absolute;
+		height: 35px;
+		margin-top: 29px;
+	}
+		#menuPrincipal li {
+			display: inline-block;
+		}
+		#menuPrincipal li a {
+			display: inline-block;
+			text-decoration: none;
+			background-color: #0B2972;
+			border-radius: 6px;
+			height: 35px;
+			color: #FFFFFF;
+			line-height: 34px;
+			padding: 0 15px;
+		}
+		#menuPrincipal li a:hover {
+			text-decoration: none;
+			background-color: #4A66C4;
+		}
+		#menuPrincipal li.inicio {
+			
+		}
+			#menuPrincipal li.inicio a:link, #menuPrincipal li.inicio a:visited {
+				
+			}
+			#menuPrincipal li.inicio a:hover {
+				
+			}
+		#menuPrincipal li.monografias {
+			
+		}
+			#menuPrincipal li.monografias a:link, #menuPrincipal li.monografias a:visited {
+				
+			}
+			#menuPrincipal li.monografias a:hover {
+				
+			}
+		#menuPrincipal li.articulos {
+			
+		}
+			#menuPrincipal li.articulos a:link, #menuPrincipal li.articulos a:visited {
+				
+			}
+			#menuPrincipal li.articulos a:hover {
+				
+			}
+		#menuPrincipal li.reportes {
+			
+		}
+			#menuPrincipal li.reportes a:link, #menuPrincipal li.reportes a:visited {
+				
+			}
+			#menuPrincipal li.reportes a:hover {
+				
+			}
+#conInferior {
+	background-color: #DFE8F4;
+	height: 100px;
+}
+#footer {
+	height: 96px;
+	width: 1090px;
+	background: url("../img/footer-fon.png") no-repeat;  
+}

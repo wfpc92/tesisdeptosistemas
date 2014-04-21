@@ -1,0 +1,150 @@
+body {
+	background: url("../img/body-fon.png") no-repeat;
+	background-color: #0B2972;
+	font-family: Arial;
+}
+
+#pagina {
+	margin: 0 auto;
+	width: 1090px;
+}
+
+#inicioSesion {
+		height: 25px;        
+}
+	#inicioSesion a:link, #inicioSesion a:visited {
+		color: #FFFFFF;
+		float: right;
+		margin-right: 30px;
+		margin-top: 4px;
+		font-size: 15px;
+
+	}
+	#inicioSesion a:hover {
+		
+	}            
+#header {
+	position: relative;
+	float: right;
+	height: 100px;
+	width: 907px;
+	background-color: #C20602;
+	border-radius: 10px; 
+}
+	#header h1 {
+		color: #FFFFFF;
+		font-size: 36px;
+		text-align: center;
+		line-height: 90px;
+	}
+
+#pagina div.clearFix {
+	clear: both;
+}
+#logo{
+		float: left;
+		height: 476px;
+		width: 183px;
+		background: url("../img/menu-pri-fon.png") no-repeat 0 450px;
+	}
+		#logo div.logo {
+			height: 226px;
+			margin: 0 auto 0 auto;
+			width: 119px;
+		}
+			#logo div.logo img {
+				
+			}
+
+#conSuperior {
+	background: url("../img/con-superior-borde-sup.png") no-repeat scroll 0 0 #DFE8F4;
+	float: right;
+	margin-top: 10px;
+	padding: 17px 26px 9px 33px;
+	width: 848px;
+	height: 340px;
+	background-color: #DFE8F4;
+}
+	#access {
+		width: 320px;
+		margin: 0 auto;
+		font-size: 18px;
+		border: 1px solid #CAD2DD;
+		background-color: #FFFFFF;
+		border-radius: 10px;
+		padding: 30px 0px 30px 40px;
+	}
+		#login {
+			width: 320px;
+		}
+			#login fieldset {
+				width: 320px;
+				color: #5C5C5C;
+			}
+				#login fieldset p {
+					font-size: 24px;
+					padding-bottom: 20px;
+					color: #0B2972;
+				}
+				#login fieldset div.form {
+					height: 68px;
+				}
+					#login fieldset div.form label {
+						display: block;
+						padding-left: 8px;
+						height: 24px;
+					}
+					#login fieldset div.form input {
+						height: 30px;
+						width: 274px;
+						border-radius: 5px;
+						font-size: 17px;
+						border: 1px solid #CDCDCD;
+					}
+					#login fieldset div.form input:focus {
+						border-radius: 5px;
+					}
+					#email {
+						
+					}
+					#password {
+						
+					}
+				#sendLogin {
+					width: 84px;
+					height: 35px;
+					background-color: #770000;
+					border: hidden;
+					cursor: pointer;
+					color: #FFFFFF;
+					border-radius: 6px;
+					font-size: 16px;
+					margin-top: 10px;
+					margin-left: 192px;
+				}
+				#sendLogin:hover {
+					background-color: #CC0000;
+				}
+				#login fieldset br {
+					
+				}
+				#login fieldset a:link, #login fieldset a:visited {
+					display: block;
+					color: #5C5C5C;
+					font-size: 16px;
+					margin-top: 5px;
+					margin-left: 116px;
+				}
+				#login fieldset a:hover {
+					color: #0B2972;
+				}
+#conInferior {
+	background-color: #DFE8F4;
+	height: 5px;
+	position: relative;
+}
+#footer {
+	height: 96px;
+	width: 1090px;
+	background: url("../img/footer-fon.png") no-repeat;  
+}
