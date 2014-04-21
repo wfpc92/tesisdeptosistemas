@@ -21,9 +21,17 @@ class Usuario extends CI_Controller {
     }
 
     public function index() {
-        $this->load->view('home');
+        $data['iniciar_sesion'] = (true ? 'iniciar_sesion' : 'perfil');
+        $this->load->view('home', $data);
     }
 
+    
+    public function vista_login(){
+        $data['login'] = 'login';                
+        $this->load->view('home',$data);
+    }
+    
+    
     /*     * *
      * Recibe email y password, verifica con la seguridad y crea una cookie
      * para establecer comunicacion cliente servidor.

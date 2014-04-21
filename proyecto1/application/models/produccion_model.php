@@ -4,7 +4,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-error_reporting(E_ERROR | E_PARSE);
+//error_reporting(E_ERROR | E_PARSE);
+
+
 class Produccion_model extends CI_Model {
     function __construct() {
         parent::__construct();
@@ -114,6 +116,8 @@ class Produccion_model extends CI_Model {
         $value = $resultado;
         return '<div id="field-MONOGRAFIA_AUTOR1" class="readonly_label">'.$value.'</div>';
     }
+    
+    
     
     public function autor2_view($value = "",$primary_key){
         $resultado = '';

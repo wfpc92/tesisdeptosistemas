@@ -1,21 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Tesis del Departamento de Sistemas</title>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width-device-width, initial-scale=1" />	
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>/css/genericos.css" media="all"/>
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>/css/estilos.css" media="all"/>
+        <script src="js/jquery.js"></script>
+    </head>
 
-<div id= "access" class="large-4 columns">
-    <?php
-    echo form_open('usuario/login') .
-    form_fieldset('Login') .
-    form_label('email:', 'email') .
-    '<input type="email" name="email" id="email" value="" />' .
-    (isset($summary) ? $summary : '') .
-    form_label('password:', 'password') .
-    form_password('password', '') .
-    form_submit('enviar_login', 'Login') .
-    anchor(site_url('/usuario/vista_restablecer_contrasena'), 'Restablesca Contraseña?') .
-    form_fieldset_close() .
-    form_close();
-    ?>      
-</div>
+    <body>
+        <div id="pagina">
 
-<?php
-echo "Hola Usuario";
-?>
+            <?php
+            if (isset($iniciar_sesion)) {
+                $this->load->view($iniciar_sesion);
+            } 
+            ?>
 
+            <div id="header">
+                <h1>Sistema Intelectual del Departamento De Sistemas</h1>
+            </div>
+            <div id="logo">
+                <div class="logo">
+                    <img src="img/logo-unicauca.png" alt="Logo Unicauca" />
+                </div>
+            </div>		
+            <div id="conSuperior">
+                <?php
+                if (isset($login)) {
+                    $this->load->view('login');
+                }
+                ?>
+                <ul id="menuPrincipal">
+                    <li class="inicio">
+                        <a href="#">Inicio</a>
+                    </li>
+                    <li class="monografias">
+                        <a href="#">Monografias</a>
+                    </li>
+                    <li class="articulos">
+                        <a href="#">Artículos</a>
+                    </li>
+                    <li class="reportes">
+                        <a href="#">Reportes Ténicos</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="clearfix"></div>
+            <div id="conInferior"></div>		
+            <div id="footer"></div>
+        </div>
+
+    </body>
+</html>
