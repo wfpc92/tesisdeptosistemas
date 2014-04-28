@@ -38,7 +38,7 @@ class Docente_model extends CI_Model {
         //$crud->display_as('USU_ROL', 'Rol');
 
         /* Campos requeridos */
-        //$crud->required_fields('USU_NOMBRE', 'USU_APELLIDO', 'USU_EMAIL', 'USU_CONTRASENA');
+        $crud->required_fields('USU_NOMBRE', 'USU_APELLIDO', 'USU_EMAIL', 'USU_CONTRASENA');
         $crud->set_rules('USU_EMAIL','Email','required|valid_email');
         $crud->set_rules('Roles','Roles','required');
         $crud->set_rules('USU_ESTADO','Estado','required');
