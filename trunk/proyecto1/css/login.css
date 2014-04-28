@@ -43,9 +43,9 @@ body {
 }
 #logo{
 		float: left;
-		height: 476px;
+		height: 486px;
 		width: 183px;
-		background: url("../img/menu-pri-fon.png") no-repeat 0 450px;
+		background: url("../img/menu-pri-fon.png") no-repeat 0 460px;
 	}
 		#logo div.logo {
 			height: 226px;
@@ -62,9 +62,10 @@ body {
 	margin-top: 10px;
 	padding: 17px 26px 9px 33px;
 	width: 848px;
-	height: 340px;
+	height: 350px;
 	background-color: #DFE8F4;
 }
+/**** estilos login (inicio)****/
 	#access {
 		width: 320px;
 		margin: 0 auto;
@@ -74,35 +75,44 @@ body {
 		border-radius: 10px;
 		padding: 30px 0px 30px 40px;
 	}
-		#login {
+		form {
 			width: 320px;
 		}
-			#login fieldset {
+			form fieldset {
 				width: 320px;
 				color: #5C5C5C;
 			}
-				#login fieldset p {
+				form fieldset p {
 					font-size: 24px;
 					padding-bottom: 20px;
 					color: #0B2972;
 				}
-				#login fieldset div.form {
+				form fieldset div.form {
 					height: 68px;
 				}
-					#login fieldset div.form label {
+				form fieldset div.login {
+					height: 95px;
+				}
+				form fieldset div.login p {
+					font-size: 17px;
+					color: #5C5C5C; 
+					padding-top: 3px;
+				}
+					form fieldset div.form label {
 						display: block;
 						padding-left: 8px;
 						height: 24px;
 					}
-					#login fieldset div.form input {
+					form fieldset div.form input {
 						height: 30px;
 						width: 274px;
 						border-radius: 5px;
 						font-size: 17px;
 						border: 1px solid #CDCDCD;
 					}
-					#login fieldset div.form input:focus {
+					#access form fieldset input:focus {
 						border-radius: 5px;
+						border: 2px solid #90B3EC;
 					}
 					#email {
 						
@@ -125,19 +135,69 @@ body {
 				#sendLogin:hover {
 					background-color: #CC0000;
 				}
-				#login fieldset br {
+				form fieldset br {
 					
 				}
-				#login fieldset a:link, #login fieldset a:visited {
+				form fieldset a:link, form fieldset a:visited {
 					display: block;
 					color: #5C5C5C;
 					font-size: 16px;
 					margin-top: 5px;
 					margin-left: 116px;
 				}
-				#login fieldset a:hover {
+				form fieldset a:hover {
 					color: #0B2972;
 				}
+	/**** estilos login (fin)****/
+
+	#restablecer_contrasena {
+		width: 510px;
+		background-color: #FFFFFF;
+		border: 1px solid #CDCDCD;
+		border-radius: 10px;
+		margin: 90px auto;		
+	}
+        #restablecer_contrasena  p {
+		font-size: 16px;
+		color: #755C5C;
+		padding: 18px;
+		line-height: 18px;
+	}
+	#restablecer_contrasena form, #restablecer_contrasena form fieldset {
+		width: 510px;
+	}
+	#restablecer_contrasena form fieldset label {
+		padding-left: 18px;
+		padding-right: 10px;
+	}
+	#restablecer_contrasena form fieldset input {
+		height: 30px;
+		width: 317px;
+		border-radius: 5px;
+		font-size: 17px;
+		border: 1px solid #CDCDCD;
+	}
+	#restablecer_contrasena form fieldset input:focus {
+		border-radius: 5px;
+		border: 2px solid #90B3EC;
+	}
+	#restablecer_contrasena #sendContrasena {
+		width: 125px;
+		height: 35px;
+		background-color: #770000;
+		border: hidden;
+		cursor: pointer;
+		color: #FFFFFF;
+		border-radius: 6px;
+		font-size: 16px;
+		margin-top: 10px;
+		margin-left: 192px;
+		margin-bottom: 10px;
+	}
+	#restablecer_contrasena #sendContrasena:hover {
+		background-color: #CC0000;
+	}
+
 #conInferior {
 	background-color: #DFE8F4;
 	height: 5px;

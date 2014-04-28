@@ -23,7 +23,7 @@
             </div>
             <div id="logo">
                 <div class="logo">
-                    <img src="img/logo-unicauca.png" alt="Logo Unicauca" />
+                    <img src="<?php echo base_url(); ?>img/logo-unicauca.png" alt="Logo Unicauca" />
                 </div>
             </div>		
             <div id="conSuperior">

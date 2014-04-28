@@ -7,5 +7,5 @@
 
 $lang['required']			= "El campo %s es obligatorio.";
 $lang['valid_email']		= "El campo %s debe contener una dirección de email válida.";
-
+$lang['is_unique'] 			= "Ese %s ya se encuentra registrado.";
 ?>
