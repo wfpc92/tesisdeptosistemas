@@ -13,4 +13,3 @@ echo form_open('administrador/crear_usuario')
  . form_password('repita_contrasena_docente') . br()
  . form_submit('btn_nuevo_usuario', 'Crear Nuevo usuario')
  . form_close();
-

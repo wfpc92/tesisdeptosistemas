@@ -43,9 +43,9 @@ body {
 }
 #logo{
 		float: left;
-		height: 523px;
+		height: 243px;
 		width: 183px;
-		background: url("../img/menu-pri-fon.png") no-repeat 0 497px;
+		background: url("../img/menu-pri-fon.png") no-repeat 0 217px;
 	}
 		#logo div.logo {
 			height: 226px;
@@ -62,7 +62,7 @@ body {
 	margin-top: 10px;
 	padding: 17px 26px 9px 33px;
 	width: 848px;
-	height: 387px;
+	height: 107px;
 	background-color: #DFE8F4;
 }
 	#menuPrincipal {
@@ -133,14 +133,14 @@ body {
 		border-radius: 10px;
 		padding: 30px 0px 30px 40px;
 	}
-		form {
+		#access form {
 			width: 320px;
 		}
-			form fieldset {
+			#access form fieldset {
 				width: 320px;
 				color: #5C5C5C;
 			}
-				form fieldset p {
+				#access form fieldset p {
 					font-size: 24px;
 					padding-bottom: 20px;
 					color: #0B2972;
@@ -258,7 +258,7 @@ body {
 #conInferior {
 	position: relative;
 	background-color: #DFE8F4;
-	padding-bottom: 10px
+	padding: 0 85px 10px;
 }
 #footer {
 	height: 96px;
@@ -321,6 +321,9 @@ div.listaUsu {
 	font-size: 30px;
 	color: #0B2972;
 }
+.flexigrid {
+    width: 80%;
+}
 .flexigrid div.fbutton span.add, .flexigrid div.fbutton span.export, .flexigrid div.fbutton span.print {
 	font-size: 16px;
 }
@@ -341,6 +344,7 @@ div.listaUsu {
 }
 .flexigrid div.pDiv {
 	padding-top: 6px;
+        width: 100%;
 }
 
 /**** estilos ver docente ****/
