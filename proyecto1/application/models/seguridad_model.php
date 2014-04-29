@@ -23,21 +23,22 @@ class Seguridad_model extends CI_Model {
         $this->sesion->crear_session($usuario);
     }
 
-    public function datos_validos() {
-        $result = false;
-        if ($this->usuario->email != '' && $this->usuario->password != '') {
-            $result = true;
+    public function datos_validos($email, $password) {
+        $this->lang->load('form_validation', 'spanish');
+        $this->form_validation->set_rules('email', 'email', 'required');
+        $this->form_validation->set_rules('password', 'password', 'required');
+        if ($this->form_validation->run()) {
+            return $this->validar_usuario($email, $password);
         }
-        return $result;
+        return FALSE;
     }
 
-    public function validar_usuario() {
+    public function validar_usuario($email, $password) {
         $contra = $this->dao->get_contrasena_usuario($email);
         if ($contra == $password) {
-            return 'administrador';
-        } else {
-            return NULL;
+            return TRUE;
         }
+        return FALSE;
     }
 
     /**
@@ -59,6 +60,10 @@ class Seguridad_model extends CI_Model {
 
     public function logout() {
         $this->sesion->logout();
+    }
+
+    public function roles() {
+        return $this->sesion->roles();
     }
 
 }

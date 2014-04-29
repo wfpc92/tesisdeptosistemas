@@ -38,5 +38,8 @@ class Gestorsesiones_model extends CI_Model {
         $email_cookie = $this->session->userdata('email');
         return $email == $email_cookie ? TRUE : FALSE;
     }
-
+    
+    public function roles(){
+        return $this->session->userdata('tipo');
+    }
 }

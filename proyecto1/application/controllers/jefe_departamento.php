@@ -5,6 +5,8 @@ if (!defined('BASEPATH'))
 
 class Jefe_Departamento extends CI_Controller {
 
+    public $STR_INDEX = "jefe_departamento/home";
+
     function __construct() {
         parent::__construct();
         $this->load->model('docente_model', 'docente');
@@ -21,7 +23,13 @@ class Jefe_Departamento extends CI_Controller {
     }
 
     private function index() {
-        $this->load->view('jefe_departamento/home');
+        $roles = $this->seguridad->roles();
+        $vistas = array();
+        foreach ($roles as $key => $value) {
+            array_push($vistas, $roles[$key] . '/home');
+        }
+        $this->data['vistas'] = $vistas;
+        $this->load->view('home', $this->data);
     }
 
     private function redirect() {

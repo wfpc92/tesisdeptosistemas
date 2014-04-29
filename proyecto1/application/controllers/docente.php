@@ -5,6 +5,8 @@ if (!defined('BASEPATH'))
 
 class Docente extends CI_Controller {
 
+    public $STR_INDEX = "docente/home";
+
     function __construct() {
         parent::__construct();
         /* Standard Libraries of codeigniter are required */
@@ -29,7 +31,8 @@ class Docente extends CI_Controller {
     }
 
     private function index() {
-        $this->load->view('docente/home');
+        $this->data['vistas'] = array('docente/home');
+        $this->load->view('home', $this->data);
     }
 
     private function redirect() {
