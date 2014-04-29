@@ -4,6 +4,8 @@ if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
 class Administrador extends CI_Controller {
+    
+    public $STR_INDEX = "administrador/home";
 
     function __construct() {
         parent::__construct();
@@ -20,7 +22,8 @@ class Administrador extends CI_Controller {
     }
 
     private function index() {
-        $this->load->view('administrador/home');
+        $this->data['vistas'] = array('administrador/home');
+        $this->load->view('home', $this->data);
     }
 
     private function redirect() {

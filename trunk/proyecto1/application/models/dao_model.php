@@ -21,8 +21,7 @@ class DAO_model extends CI_Model {
         $this->db->query($sql, array(3, 'live', 'Rick'));
     }
 
-    function get_contrasena_usuario() {
-        $email = $this->usuario->email;
+    function get_contrasena_usuario($email) {
         if ($this->conectar()) {
             $query = $this->db->query('
                     SELECT USU_CONTRASENA AS password 
@@ -34,11 +33,11 @@ class DAO_model extends CI_Model {
                 return $row->password;
             }
         }
-        return FALSE;
+        return NULL;
     }
 
     function get_tipo_usuario() {
-        $result = array();
+        $result = NULL;
         $email = $this->usuario->email;
         if ($this->conectar()) {
             $sql = "SELECT rol.ROL_NOMBRE
@@ -49,6 +48,7 @@ class DAO_model extends CI_Model {
                     LIMIT 0 , 30";
             $query = $this->db->query($sql, array($email));
             if ($query->num_rows() > 0) {
+                $result = array();
                 foreach ($query->result_array() as $row) {
                     array_push($result, $row['ROL_NOMBRE']);
                 }

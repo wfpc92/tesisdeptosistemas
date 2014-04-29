@@ -25,13 +25,11 @@ class Usuario extends CI_Controller {
         $this->load->view('home', $data);
     }
 
-    
-    public function vista_login(){
-        $data['login'] = 'login';                
-        $this->load->view('home',$data);
+    public function vista_login() {
+        $data['vistas'] = array('login');
+        $this->load->view('home', $data);
     }
-    
-    
+
     /*     * *
      * Recibe email y password, verifica con la seguridad y crea una cookie
      * para establecer comunicacion cliente servidor.
@@ -40,47 +38,38 @@ class Usuario extends CI_Controller {
     public function login() {
         $this->usuario->email = isset($_POST['email']) ? $_POST['email'] : '';
         $this->usuario->password = isset($_POST['password']) ? $_POST['password'] : '';
-        $datos_validos = $this->seguridad->datos_validos();
+        $datos_validos = $this->seguridad->datos_validos($this->usuario->email, $this->usuario->password);
         $controller = NULL;
         if ($datos_validos) {
             $this->usuario->tipo_usuario = $this->dao->get_tipo_usuario();
-            $controller = array();
-            foreach ($this->usuario->tipo_usuario as $key => $value) {
-                switch ($value) {
-                    case "administrador":
-                        $controller[$key] = new Administrador();
-                        break;
-                    case "docente":
-                        $controller[$key] = new Docente();
-                        break;
-                    case "jefe_departamento":
-                        $controller[$key] = new Jefe_departamento();
-                        break;
-                }
-            }
-        }
-        if ($controller != NULL) {
             $this->seguridad->nueva_session($this->usuario);
-            $controller[0]->tmp('redirect');
-            foreach ($controller as $key => $value) {
-                $controller[$key]->tmp('index');
+            switch ($this->usuario->tipo_usuario[0]) {
+                case "administrador":
+                    $controller = new Administrador();
+                    break;
+                case "docente":
+                    $controller = new Docente();
+                    break;
+                case "jefe_departamento":
+                    $controller = new Jefe_departamento();
+                    break;
             }
-            return;
-        }
-
-        if (!$datos_validos || !$controller) {
-            $this->data['summary'] = "Email o Contraseña incorrectos.";
+            $controller->tmp('redirect');
+        } else {
+            $this->data['summary'] = 'Usuario o contraseña incorrectos';
+            $this->data['vistas'] = array('login');
         }
         $this->load->view("home", $this->data);
     }
 
     public function vista_restablecer_contrasena() {
-        $this->load->view('vista_restablecer_contrasena');
+        $this->data['vistas'] = array('vista_restablecer_contrasena');
+        $this->load->view('home', $this->data);
     }
 
     public function restablecer_contrasena() {
-        $this->load->model('dao_model', 'dao');
         $email = $this->usuario->email;
+        echo $email;
         $password = $this->dao->get_contrasena_usuario();
         if ($password) {
             $this->load->model('clienteemail_model', 'email');
@@ -94,7 +83,8 @@ class Usuario extends CI_Controller {
 
     public function logout() {
         $this->seguridad->logout();
-        $this->load->view('home');
+        $this->data['iniciar_sesion'] = array('iniciar_sesion');
+        $this->load->view('home', $this->data);
     }
 
 }
