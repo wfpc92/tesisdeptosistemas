@@ -218,7 +218,7 @@ body {
 	#restablecer_contrasena form, #restablecer_contrasena form fieldset {
 		width: 510px;
 	}
-	#restablecer_contrasena fieldset p {
+	#restablecer_contrasena  p {
 		font-size: 16px;
 		color: #755C5C;
 		padding: 18px;
